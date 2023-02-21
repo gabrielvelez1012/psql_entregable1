@@ -1,0 +1,121 @@
+////////////////MI BASE DE DATOS/////////////////////
+
+
+postgres=# \c course_list
+Ahora está conectado a la base de datos «course_list» con el usuario «postgres».
+course_list=# \d
+                 Listado de relaciones
+ Esquema |        Nombre        |   Tipo    |  Due±o
+---------+----------------------+-----------+----------
+ public  | categories           | tabla     | postgres
+ public  | categories_id_seq    | secuencia | postgres
+ public  | courses              | tabla     | postgres
+ public  | courses_id_seq       | secuencia | postgres
+ public  | level                | tabla     | postgres
+ public  | level_id_seq         | secuencia | postgres
+ public  | roles                | tabla     | postgres
+ public  | roles_id_seq         | secuencia | postgres
+ public  | teacher              | tabla     | postgres
+ public  | teacher_id_seq       | secuencia | postgres
+ public  | users                | tabla     | postgres
+ public  | users_id_seq         | secuencia | postgres
+ public  | videos_course        | tabla     | postgres
+ public  | videos_course_id_seq | secuencia | postgres
+(14 filas)
+
+
+course_list=# SELECT * FROM categories;
+ id | name
+----+------
+  1 | JS
+  2 | CSS
+(2 filas)
+
+
+course_list=# INSERT INTO categories VALUES(3, 'HTML'),
+course_list-# (4, 'ReactJS');
+INSERT 0 2
+
+/////////////////////TABLA COURSES////////////////////////
+
+course_list=# SELECT * FROM courses;
+ id | title |  description   | id_level | id_teacher | id_user | id_categories | id_videos
+----+-------+----------------+----------+------------+---------+---------------+-----------
+  1 | js    | js desde cero  |        1 |          1 |       1 |             1 |         1
+  2 | css   | css desde cero |        2 |          2 |       2 |             2 |         2
+(2 filas)
+
+
+course_list=# INSERT INTO courses VALUES(3, 'HTML', 'HTML desde cero', 1, 1, 1, 3, 1),
+course_list-# (4, 'ReactJS', 'react desde cero', 1, 1, 1, 4, 1);
+INSERT 0 2
+
+//////////////////////TABLA LEVEL////////////////////
+
+course_list=# SELECT * FROM level;
+ id |     name
+----+---------------
+  1 | principiante
+  2 | experimentado
+(2 filas)
+
+
+course_list=# INSERT INTO level VALUES(3, 'avanzado');
+INSERT 0 1
+
+///////////////////////////TABLA ROLES//////////////////
+
+course_list=# SELECT * FROM roles;
+ id |    name
+----+------------
+  1 | estudiante
+  2 | profesor
+(2 filas)
+
+
+course_list=# INSERT INTO roles VALUES(3, 'administrador');
+INSERT 0 1
+
+///////////////TABLA TEACHER////////////////////////////
+
+course_list=# SELECT * FROM teacher;
+ id |  name
+----+---------
+  1 | Mariano
+  2 | Luciano
+(2 filas)
+
+
+course_list=# INSERT INTO teacher VALUES(3, 'Lucas'),
+course_list-# (4, 'Leo');
+INSERT 0 2
+
+////////////////////////TABLA USERS//////////////////////
+
+course_list=# SELECT * FROM users;
+ id |  name  |       email        | password | age | id_roles
+----+--------+--------------------+----------+-----+----------
+  1 | Lucas  | luca@hotmail.com   | 1234     |  19 |        1
+  2 | Laura  | laura@hotmail.com  | 12345    |  22 |        1
+  3 | Maria  | maria@hotmail.com  | 123      |  20 |        1
+  4 | Monica | monica@hotmail.com | 2222     |  19 |        1
+(4 filas)
+
+
+course_list=# INSERT INTO users VALUES(5, 'Sofia', 'sofi@gmail.com', '3322', 17, 1),
+course_list-# (6, 'Leonardo', 'leo@gmail.com', '1111', 22, 1);
+INSERT 0 2
+
+
+//////////////////////////TABLA VIDEOS_COURSE///////////////////
+
+course_list=# SELECT * FROM videos_course;
+ id |     title      |           url
+----+----------------+--------------------------
+  1 | js desde cero  | https://jsdesdecero.com
+  2 | css desde cero | https://cssdesdecero.com
+(2 filas)
+
+course_list=# INSERT INTO videos_course VALUES(3, 'html desde cero', 'https://htmldesdecero.com'),
+course_list-# (4, 'react desde cero', 'https://reactjs.com');
+INSERT 0 2
